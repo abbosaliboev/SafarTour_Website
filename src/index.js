@@ -4,7 +4,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './i18n';
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+// 🔹 Bootstrap CSS va JS importlari
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +16,6 @@ root.render(
       <App />
     </BrowserRouter>
   </React.StrictMode>
-
 );
 
 reportWebVitals();

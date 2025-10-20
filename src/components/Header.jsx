@@ -5,15 +5,16 @@ import { useTranslation } from "react-i18next";
 function Header() {
   const { t, i18n } = useTranslation();
 
+  // 🔁 Tilni o‘zgartirish funksiyasi
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
 
-  // ✅ Yangi funksiya: Navbar collapse’ni yopadi
+  // 📱 Navbarni yopish funksiyasi (mobil menyu uchun)
   const closeNavbar = () => {
     const navbar = document.querySelector(".navbar-collapse");
-    const bsCollapse = window.bootstrap.Collapse.getInstance(navbar);
+    const bsCollapse = window.bootstrap?.Collapse.getInstance(navbar);
     if (bsCollapse) {
       bsCollapse.hide();
     }
@@ -21,9 +22,10 @@ function Header() {
 
   return (
     <div>
-      {/* Topbar */}
+      {/* 🔹 TOPBAR */}
       <div className="container-fluid bg-dark px-4 py-2">
         <div className="d-flex justify-content-between align-items-center flex-wrap text-light small">
+          {/* Chap tomonda kontakt ma’lumotlari */}
           <div className="d-flex align-items-center flex-wrap">
             <span className="me-3">
               <i className="fa fa-map-marker-alt me-2" />
@@ -39,7 +41,7 @@ function Header() {
             </span>
           </div>
 
-          {/* Language selector */}
+          {/* O‘ng tomonda Telegram va Til tanlash */}
           <div className="d-flex align-items-center mt-2 mt-lg-0">
             <a
               className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
@@ -50,7 +52,8 @@ function Header() {
               <i className="fab fa-telegram-plane fw-normal" />
             </a>
 
-            <div className="dropdown">
+            {/* 🌍 Language Selector (desktop uchun) */}
+            <div className="dropdown d-none d-lg-block">
               <button
                 className="btn btn-sm btn-outline-light dropdown-toggle"
                 type="button"
@@ -94,7 +97,7 @@ function Header() {
         </div>
       </div>
 
-      {/* Navbar */}
+      {/* 🔹 NAVBAR */}
       <div className="container-fluid position-relative p-0">
         <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
           <Link
@@ -108,16 +111,21 @@ function Header() {
             </h1>
           </Link>
 
+          {/* 📱 Mobil menyu tugmasi */}
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <span className="fa fa-bars" />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarCollapse">
+            {/* 🔸 Navigatsiya bo‘limlari */}
             <div className="navbar-nav ms-auto py-0 text-center">
               <Link to="/" className="nav-item nav-link" onClick={closeNavbar}>
                 {t("home")}
@@ -151,7 +159,7 @@ function Header() {
                 {t("contact")}
               </Link>
 
-              {/* 🌍 Mobile til tanlash */}
+              {/* 🌍 Mobile Language Selector */}
               <div className="nav-item dropdown d-lg-none mt-3">
                 <button
                   className="btn btn-outline-primary dropdown-toggle w-100"
@@ -198,6 +206,7 @@ function Header() {
               </div>
             </div>
 
+            {/* 🔹 Booking tugmasi */}
             <Link
               to="/Booking"
               className="btn btn-primary rounded-pill py-2 px-4 ms-lg-3 mt-3 mt-lg-0"

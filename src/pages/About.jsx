@@ -7,7 +7,7 @@ function About() {
   return (
     <div>
       {/* About Section */}
-      <div className="container-xxl py-5">
+      <div className="container-xxl mt-2 py-5">
         <div className="container">
           <div className="row g-5">
             <div
