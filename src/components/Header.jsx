@@ -13,13 +13,10 @@ function Header() {
   return (
     <div>
       {/* Topbar Start */}
-      <div className="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div className="row gx-0">
+      <div className="container-fluid bg-dark px-5">
+        <div className="row gx-0 align-items-center">
           <div className="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-            <div
-              className="d-inline-flex align-items-center"
-              style={{ height: 45 }}
-            >
+            <div className="d-flex align-items-center" style={{ height: 45 }}>
               <small className="me-3 text-light">
                 <i className="fa fa-map-marker-alt me-2" />
                 {t("location")}
@@ -37,10 +34,7 @@ function Header() {
 
           {/* Right Side */}
           <div className="col-lg-4 text-center text-lg-end">
-            <div
-              className="d-inline-flex align-items-center"
-              style={{ height: 45 }}
-            >
+            <div className="d-flex align-items-center justify-content-center justify-content-lg-end" style={{ height: 45 }}>
               {/* Telegram */}
               <a
                 className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-3"
@@ -98,20 +92,23 @@ function Header() {
       </div>
       {/* Topbar End */}
 
-      {/* Navbar & Hero Start */}
+      {/* Navbar Start */}
       <div className="container-fluid position-relative p-0">
         <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <Link to="/" className="navbar-brand p-0 d-flex align-items-center">
-          <h1 className="text-primary m-0 fs-3">
-            <i className="fa fa-globe-americas me-2" />
-            Jizzax Safar Tour
-          </h1>
-        </Link>
+          <Link to="/" className="navbar-brand p-0 d-flex align-items-center">
+            <h1 className="text-primary m-0 fs-3">
+              <i className="fa fa-globe-americas me-2" />
+              Jizzax Safar Tour
+            </h1>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <span className="fa fa-bars" />
           </button>
@@ -142,7 +139,7 @@ function Header() {
           </div>
         </nav>
       </div>
-      {/* Navbar & Hero End */}
+      {/* Navbar End */}
     </div>
   );
 }
