@@ -1,0 +1,7 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install --legacy-peer-deps && npm run build"
+startCommand = "npm start"
+
+[env]
+NODE_VERSION = "18"
