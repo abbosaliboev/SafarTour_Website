@@ -5,3 +5,5 @@ startCommand = "npm start"
 
 [env]
 NODE_VERSION = "18"
+NPM_CONFIG_LEGACY_PEER_DEPS = "true"
+NODE_OPTIONS = "--openssl-legacy-provider"
