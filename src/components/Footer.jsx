@@ -1,158 +1,105 @@
-import React from 'react'
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
-    <div>
-           {/* Footer Start */}
-    <div
-      className="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
-      data-wow-delay="0.1s"
-    >
-      <div className="container py-5">
-        <div className="row g-5">
-          <div className="col-lg-3 col-md-6">
-            <h4 className="text-white mb-3">Company</h4>
-            <a className="btn btn-link" href="/">
-              About Us
-            </a>
-            <a className="btn btn-link" href="/">
-              Contact Us
-            </a>
-            <a className="btn btn-link" href="/">
-              Privacy Policy
-            </a>
-            <a className="btn btn-link" href="/">
-              Terms &amp; Condition
-            </a>
-            <a className="btn btn-link" href="/">
-              FAQs &amp; Help
-            </a>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <h4 className="text-white mb-3">Contact</h4>
+    <footer className="bg-dark text-light pt-5 mt-5">
+      <div className="container pb-4">
+        <div className="row g-4">
+          {/* 1️⃣ Kompaniya haqida */}
+          <div className="col-lg-4 col-md-6">
+            <h5 className="text-white mb-3">{t("footer.company_name")}</h5>
+            <p className="small">{t("footer.company_desc")}</p>
             <p className="mb-2">
-              <i className="fa fa-map-marker-alt me-3" />
-              123 Street, New York, USA
+              <i className="fa fa-map-marker-alt me-2 text-primary" />
+              {t("footer.address")}
             </p>
             <p className="mb-2">
-              <i className="fa fa-phone-alt me-3" />
-              +012 345 67890
+              <i className="fa fa-phone-alt me-2 text-primary" /> +998 93 307 46 79
             </p>
             <p className="mb-2">
-              <i className="fa fa-envelope me-3" />
-              info@example.com
+              <i className="fa fa-envelope me-2 text-primary" /> jizzaxsafartour@gmail.com
+            </p>
+            <p className="mb-2">
+              <i className="fa fa-clock me-2 text-primary" /> {t("footer.working_hours")}
             </p>
             <div className="d-flex pt-2">
-              <a className="btn btn-outline-light btn-social" href="/">
-                <i className="fab fa-twitter" />
-              </a>
-              <a className="btn btn-outline-light btn-social" href="/">
-                <i className="fab fa-facebook-f" />
-              </a>
-              <a className="btn btn-outline-light btn-social" href="">
-                <i className="fab fa-youtube" />
-              </a>
-              <a className="btn btn-outline-light btn-social" href="">
-                <i className="fab fa-linkedin-in" />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <h4 className="text-white mb-3">Gallery</h4>
-            <div className="row g-2 pt-2">
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-1.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-2.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-3.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-2.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-3.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="col-4">
-                <img
-                  className="img-fluid bg-light p-1"
-                  src="assets/img/package-1.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <h4 className="text-white mb-3">Newsletter</h4>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div
-              className="position-relative mx-auto"
-              style={{ maxWidth: 400 }}
-            >
-              <input
-                className="form-control border-primary w-100 py-3 ps-4 pe-5"
-                type="text"
-                placeholder="Your email"
-              />
-              <button
-                type="button"
-                className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+              <a
+                className="btn btn-outline-light btn-social"
+                href="https://t.me/jizzax_safartour"
+                target="_blank"
+                rel="noreferrer"
               >
-                SignUp
-              </button>
+                <i className="fab fa-telegram" />
+              </a>
             </div>
+          </div>
+
+          {/* 2️⃣ Foydali sahifalar */}
+          <div className="col-lg-4 col-md-6">
+            <h5 className="text-white mb-3">{t("footer.useful_pages")}</h5>
+            <div className="d-flex flex-column">
+              <a className="btn btn-link text-start" href="/">{t("footer.home")}</a>
+              <a className="btn btn-link text-start" href="/about">{t("footer.about")}</a>
+              <a className="btn btn-link text-start" href="/packages">{t("footer.packages")}</a>
+              <a className="btn btn-link text-start" href="/booking">{t("footer.booking")}</a>
+              <a className="btn btn-link text-start" href="/contact">{t("footer.contact")}</a>
+            </div>
+          </div>
+
+          {/* 3️⃣ Hujjatlar */}
+          <div className="col-lg-4 col-md-6">
+            <h5 className="text-white mb-3">{t("footer.documents")}</h5>
+            <div className="d-flex flex-column">
+              <a className="btn btn-link text-start" href="/privacy-policy">
+                {t("footer.privacy")}
+              </a>
+              <a className="btn btn-link text-start" href="/public-offer">
+                {t("footer.offer")}
+              </a>
+              <a className="btn btn-link text-start" href="/terms">
+                {t("footer.terms")}
+              </a>
+              <a className="btn btn-link text-start" href="/license">
+                {t("footer.license")}
+              </a>
+            </div>
+            <p className="small mt-3">
+              <i className="fa fa-check text-primary me-1"></i>
+              {t("footer.legal_notice")}
+            </p>
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="copyright">
-          <div className="row">
-            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              ©{" "}
-              <a className="border-bottom" href="#">
-                Your Site Name
-              </a>
-              , All Right Reserved.
-              Designed By{" "}
-              <a className="border-bottom" href="https://github.com/ParasSalunke">
-                Paras Salunke
-              </a>
-            </div>
-            <div className="col-md-6 text-center text-md-end">
-              <div className="footer-menu">
-                <a href="/">Home</a>
-                <a href="/">Cookies</a>
-                <a href="/">Help</a>
-                <a href="/">FQAs</a>
-              </div>
-            </div>
-          </div>
-        </div>
+
+      {/* Pastki chiziq */}
+      <div
+        className="text-center py-3 mt-3"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+      >
+        <small className="text-muted">
+          © {new Date().getFullYear()} {t("footer.company_name")}. {t("footer.rights_reserved")}
+          <br />
+          {t("footer.site_label")}{" "}
+          <a
+            href="https://safar-tour.uz"
+            className="text-primary text-decoration-none"
+          >
+            safar-tour.uz
+          </a>{" "}
+          | {t("footer.dev_by")}{" "}
+          <a
+            href="https://www.abbosaliboev.site"
+            target="_blank"
+            rel="noreferrer"
+            className="text-primary text-decoration-none"
+          >
+            Abbos Aliboev
+          </a>
+        </small>
       </div>
-    </div>
-    {/* Footer End */}
-    </div>
-  )
+    </footer>
+  );
 }

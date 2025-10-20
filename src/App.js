@@ -5,13 +5,16 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
+import Process from './pages/Process'
 import Packages from './pages/Packages'
-import Destination from './pages/Destination'
+import Gallery from './pages/Gallery'
 import Booking from './pages/Booking'
-import Team from './pages/Team'
-import Testimonial from './pages/Testimonial'
 import Error from './pages/Error'
 import Contact from './pages/Contact'
+import Terms from "./pages/Terms";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PublicOffer from "./pages/PublicOffer";
+import License from "./pages/License";
 
 export default function App() {
   return (
@@ -21,13 +24,16 @@ export default function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/services' element={<Services/>}/>
+        <Route path='/process' element={<Process/>}/>
         <Route path='/packages' element={<Packages/>}/>
-        <Route path='/destination' element={<Destination/>}/>
+        <Route path='/gallery' element={<Gallery/>}/>
         <Route path='/booking' element={<Booking/>}/>
-        <Route path='/team' element={<Team/>}/>
-        <Route path='/testimonial' element={<Testimonial/>}/>
         <Route path='/error' element={<Error/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/public-offer" element={<PublicOffer />} />
+        <Route path="/license" element={<License />} />
         </Routes>
         <Footer />
     </div>
