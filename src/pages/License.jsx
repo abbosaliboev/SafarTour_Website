@@ -29,20 +29,6 @@ export default function License() {
         </li>
       </ul>
 
-      <h5>2. {t("license.section2_title")}</h5>
-      <ul>
-        <li>
-          <strong>{t("license.number_label")}</strong> № 2025/TT-041
-        </li>
-        <li>
-          <strong>{t("license.date_label")}</strong> 2025-yil 17-oktabr
-        </li>
-        <li>
-          <strong>{t("license.issuer_label")}</strong> Jizzax Viloyati, Jizzax
-          Shahar DXM
-        </li>
-      </ul>
-
       <a
         className="btn btn-outline-primary mt-3"
         href="/assets/docs/qaror_433.pdf"
