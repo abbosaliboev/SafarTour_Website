@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/safartour_website/static/js/main.24155e6b.js",
+    "static/js/453.3e504014.chunk.js": "/safartour_website/static/js/453.3e504014.chunk.js",
+    "index.html": "/safartour_website/index.html",
+    "main.24155e6b.js.map": "/safartour_website/static/js/main.24155e6b.js.map",
+    "453.3e504014.chunk.js.map": "/safartour_website/static/js/453.3e504014.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.24155e6b.js"
+  ]
+}
