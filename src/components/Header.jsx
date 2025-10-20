@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; // 🔥 Dropdownga zarur
 
 function Header() {
   const { t, i18n } = useTranslation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem("lang", lang);
+    // localStorage o'rniga React state ishlatiladi
+    setIsMenuOpen(false); // Tilni o'zgartirganda menyuni yopish
   };
 
-  // 🔥 Mobil qurilmalarda dropdown to‘g‘ri ishlashi uchun useEffect
-  useEffect(() => {
-    const bootstrap = require("bootstrap/dist/js/bootstrap.bundle.min.js");
-    window.bootstrap = bootstrap;
-  }, []);
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false); // Link bosilganda menyuni yopish
+  };
 
   return (
     <div>
@@ -78,7 +81,7 @@ function Header() {
                       className="dropdown-item"
                       onClick={() => changeLanguage("uz")}
                     >
-                      🇺🇿 O‘zbekcha
+                      🇺🇿 O'zbekcha
                     </button>
                   </li>
                   <li>
@@ -105,7 +108,7 @@ function Header() {
       </div>
       {/* Topbar End */}
 
-      {/* Navbar Start */}
+      {/* Navbar & Hero Start */}
       <div className="container-fluid position-relative p-0">
         <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
           <Link to="/" className="navbar-brand p-0 d-flex align-items-center">
@@ -114,47 +117,87 @@ function Header() {
               Jizzax Safar Tour
             </h1>
           </Link>
+          
+          {/* Mobile Language Selector - Faqat mobilda ko'rinadi */}
+          <div className="dropdown d-lg-none me-2">
+            <button
+              className="btn btn-sm btn-outline-primary dropdown-toggle"
+              type="button"
+              id="languageDropdownMobile"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {i18n.language.toUpperCase()}
+            </button>
+            <ul
+              className="dropdown-menu"
+              aria-labelledby="languageDropdownMobile"
+            >
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => changeLanguage("uz")}
+                >
+                  🇺🇿 O'zbekcha
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => changeLanguage("ru")}
+                >
+                  🇷🇺 Русский
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => changeLanguage("en")}
+                >
+                  🇬🇧 English
+                </button>
+              </li>
+            </ul>
+          </div>
 
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={handleMenuToggle}
+            aria-expanded={isMenuOpen}
           >
             <span className="fa fa-bars" />
           </button>
-
-          <div className="collapse navbar-collapse" id="navbarCollapse">
+          
+          <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarCollapse">
             <div className="navbar-nav ms-auto py-0">
-              <Link to="/" className="nav-item nav-link">
+              <Link to="/" className="nav-item nav-link" onClick={handleLinkClick}>
                 {t("home")}
               </Link>
-              <Link to="/About" className="nav-item nav-link">
+              <Link to="/About" className="nav-item nav-link" onClick={handleLinkClick}>
                 {t("about")}
               </Link>
-              <Link to="/Services" className="nav-item nav-link">
+              <Link to="/Services" className="nav-item nav-link" onClick={handleLinkClick}>
                 {t("services")}
               </Link>
-              <Link to="/Packages" className="nav-item nav-link">
+              <Link to="/Packages" className="nav-item nav-link" onClick={handleLinkClick}>
                 {t("packages")}
               </Link>
-              <Link to="/Contact" className="nav-item nav-link">
+              <Link to="/Contact" className="nav-item nav-link" onClick={handleLinkClick}>
                 {t("contact")}
               </Link>
             </div>
             <Link
               to="/Booking"
               className="btn btn-primary rounded-pill py-2 px-4"
+              onClick={handleLinkClick}
             >
               {t("booking")}
             </Link>
           </div>
         </nav>
       </div>
-      {/* Navbar End */}
+      {/* Navbar & Hero End */}
     </div>
   );
 }
