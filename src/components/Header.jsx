@@ -31,35 +31,33 @@ function Header() {
   return (
     <div>
       {/* Topbar Start */}
-      <div className="container-fluid bg-dark px-5">
-        <div className="row gx-0">
-          <div className="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+      <div className="container-fluid bg-dark px-3" style={{ padding: '5px 0' }}>
+        <div className="row gx-0 align-items-center">
+          <div className="col-12 text-center">
             <div
-              className="d-inline-flex align-items-center"
-              style={{ height: 45 }}
+              className="d-flex justify-content-center align-items-center"
+              style={{ height: '40px', gap: '15px' }}
             >
-              <small className="me-3 text-light">
+              <small className="text-light d-flex align-items-center" style={{ margin: 0 }}>
                 <i className="fa fa-phone-alt me-2" />
                 {t('phone', { defaultValue: '+998 93 307 46 79' })}
               </small>
-            </div>
-          </div>
-          <div className="col-lg-4 text-center text-lg-end">
-            <div
-              className="d-inline-flex align-items-center"
-              style={{ height: 45 }}
-            >
-              {/* Language Selector */}
-              <div className="dropdown me-2">
+              <div className="dropdown">
                 <button
                   className="btn btn-sm btn-outline-light dropdown-toggle"
                   id="languageDropdown"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  style={{ padding: '2px 10px', fontSize: '0.9rem', height: '30px' }}
                 >
-                  {i18n.language === 'uz' && '🇺🇿 O‘zbekcha'}
-                  {i18n.language === 'ru' && '🇷🇺 Русский'}
-                  {i18n.language === 'en' && '🇬🇧 English'}
+                  <span className="me-1" style={{ lineHeight: '1' }}>
+                    {i18n.language === 'uz' && '🇺🇿'}
+                    {i18n.language === 'ru' && '🇷🇺'}
+                    {i18n.language === 'en' && '🇬🇧'}
+                  </span>
+                  {i18n.language === 'uz' && 'O‘zbekcha'}
+                  {i18n.language === 'ru' && 'Русский'}
+                  {i18n.language === 'en' && 'English'}
                 </button>
                 <ul
                   className="dropdown-menu dropdown-menu-end"
@@ -92,12 +90,13 @@ function Header() {
                 </ul>
               </div>
               <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle"
                 href="https://t.me/Jizzax_SafarTour"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{ width: '30px', height: '30px', padding: 0 }}
               >
-                <i className="fab fa-telegram-plane fw-normal" />
+                <i className="fab fa-telegram-plane fw-normal" style={{ lineHeight: '30px' }} />
               </a>
             </div>
           </div>
@@ -153,37 +152,26 @@ function Header() {
       <style>{`
         @media (max-width: 991px) {
           .container-fluid.bg-dark {
-            padding: 10px 15px;
+            padding: 5px 15px;
           }
-          .d-inline-flex.align-items-center {
-            flex-wrap: nowrap; /* Elementlarni bir qatorga joylashtirish */
-            justify-content: center;
-            gap: 5px; /* Bo'shliqni kamaytirish */
+          .d-flex.justify-content-center {
+            flex-wrap: nowrap !important;
+            gap: 10px;
           }
-          .col-lg-8, .col-lg-4 {
-            flex: 0 0 100%;
-            max-width: 100%;
-            text-align: center;
-          }
-          .col-lg-8 .d-inline-flex {
-            justify-content: flex-start; /* Telefon raqami chapda */
-          }
-          .col-lg-4 .d-inline-flex {
-            justify-content: flex-end; /* Til va Telegram o'ngda */
-          }
-          .dropdown-menu {
-            text-align: center;
-          }
-          .btn-sm-square {
-            margin: 0 3px;
-          }
-          .me-3.text-light {
-            font-size: 0.85rem; /* Telefon raqami o'lchamini kichraytirish */
-            margin-right: 10px;
+          .text-light {
+            font-size: 0.9rem;
           }
           .btn.btn-sm.btn-outline-light.dropdown-toggle {
-            font-size: 0.85rem; /* Dropdown matnini kichraytirish */
-            padding: 2px 8px; /* Tugma o'lchamini moslashtirish */
+            padding: 2px 10px;
+            font-size: 0.9rem;
+          }
+          .btn-sm-square {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+          }
+          .fab.fa-telegram-plane {
+            line-height: 30px;
           }
         }
       `}</style>
