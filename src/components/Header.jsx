@@ -55,10 +55,6 @@ function Header() {
               <i className="fa fa-phone-alt me-2 text-primary" />
               {t("phone")}
             </small>
-            <small className="m-0">
-              <i className="fa fa-envelope-open me-2 text-primary" />
-              {t("email")}
-            </small>
           </div>
 
           {/* O‘ng tomon */}
@@ -132,7 +128,7 @@ function Header() {
         <Link to="/" className="navbar-brand p-0">
           <h1 className="text-primary m-0">
             <i className="fa fa-map-marker-alt me-3" />
-            {t("brand")}
+            {t("Jizzax Safar Tour")}
           </h1>
         </Link>
 
