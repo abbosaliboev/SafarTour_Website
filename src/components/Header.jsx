@@ -47,24 +47,24 @@ function Header() {
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
             transition: "all 0.3s ease-in-out",
-            zIndex: 20, // ✅ Topbar yuqori, lekin dropdown uchun joy qoldirilgan
+            zIndex: 20,
           }}
         >
           <div className="d-flex flex-wrap justify-content-between align-items-center">
             {/* Chap tomon */}
             <div
-              className="d-flex align-items-center flex-wrap mb-lg-0"
+              className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
               style={{
                 fontSize: "0.85rem",
                 lineHeight: "1.2",
                 gap: "10px",
               }}
             >
-              <small className="me-3 m-0">
+              <small className="me-2 m-0">
                 <i className="fa fa-map-marker-alt me-2 text-primary" />
                 {t("location")}
               </small>
-              <small className="me-3 m-0">
+              <small className="me-2 m-0">
                 <i className="fa fa-phone-alt me-2 text-primary" />
                 {t("phone")}
               </small>
@@ -86,7 +86,7 @@ function Header() {
                 className="dropdown"
                 style={{
                   position: "relative",
-                  zIndex: 9999, // ✅ doim hamma narsa ustida
+                  zIndex: 9999,
                 }}
               >
                 <button
@@ -100,11 +100,11 @@ function Header() {
                   {i18n.language === "en" && "🇬🇧 English"}
                 </button>
                 <ul
-                  className="dropdown-menu dropdown-menu-end show-on-top"
+                  className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="languageDropdown"
                   style={{
                     position: "absolute",
-                    zIndex: 99999, // ✅ hatto logodan ham yuqorida
+                    zIndex: 99999,
                   }}
                 >
                   <li>
@@ -140,18 +140,14 @@ function Header() {
 
       {/* 🔹 Navbar */}
       <nav
-        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0"
-        style={{
-          background: "transparent",
-          zIndex: 10, // ✅ pastroq, shunda dropdown tepada chiqadi
-        }}
+        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0 position-relative custom-navbar"
       >
         <Link to="/" className="navbar-brand p-0">
           <h1
             className="text-primary m-0"
             style={{
               position: "relative",
-              zIndex: 1, // ✅ logo endi dropdowndan pastda
+              zIndex: 1,
             }}
           >
             <i className="fa fa-map-marker-alt me-3" />
@@ -188,20 +184,30 @@ function Header() {
               {t("contact")}
             </Link>
             <Link
-              to="/Register"
+              to="/Booking"
               className="btn btn-primary rounded-pill py-2 px-4 ms-lg-3"
             >
-              {t("register")}
+              {t("booking")}
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* 🔹 Responsiv CSS */}
+      {/* 🔹 CSS override */}
       <style>{`
+        .custom-navbar {
+          background-color: transparent !important; /* ✅ oq fonni butunlay o‘chiradi */
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        .navbar-light, .bg-light {
+          background-color: transparent !important; /* ✅ bootstrap oq fonini bekor qiladi */
+        }
+
         @media (max-width: 768px) {
           .container-fluid small {
-            font-size: 0.6rem !important;
+            font-size: 0.7rem !important;
           }
           .navbar-nav .nav-link {
             text-align: center;
