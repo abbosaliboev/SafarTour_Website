@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -9,6 +9,24 @@ function Header() {
     i18n.changeLanguage(lang);
     localStorage.setItem('lang', lang);
   };
+
+  useEffect(() => {
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (navbarCollapse.classList.contains('show')) {
+          new window.bootstrap.Collapse(navbarCollapse).hide();
+        }
+      });
+    });
+
+    return () => {
+      navLinks.forEach((link) => {
+        link.removeEventListener('click', () => {});
+      });
+    };
+  }, []);
 
   return (
     <div>
@@ -100,6 +118,9 @@ function Header() {
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <span className="fa fa-bars" />
           </button>
@@ -135,20 +156,34 @@ function Header() {
             padding: 10px 15px;
           }
           .d-inline-flex.align-items-center {
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Elementlarni bir qatorga joylashtirish */
             justify-content: center;
-            gap: 10px;
+            gap: 5px; /* Bo'shliqni kamaytirish */
           }
           .col-lg-8, .col-lg-4 {
             flex: 0 0 100%;
             max-width: 100%;
             text-align: center;
           }
+          .col-lg-8 .d-inline-flex {
+            justify-content: flex-start; /* Telefon raqami chapda */
+          }
+          .col-lg-4 .d-inline-flex {
+            justify-content: flex-end; /* Til va Telegram o'ngda */
+          }
           .dropdown-menu {
             text-align: center;
           }
           .btn-sm-square {
-            margin: 0 5px;
+            margin: 0 3px;
+          }
+          .me-3.text-light {
+            font-size: 0.85rem; /* Telefon raqami o'lchamini kichraytirish */
+            margin-right: 10px;
+          }
+          .btn.btn-sm.btn-outline-light.dropdown-toggle {
+            font-size: 0.85rem; /* Dropdown matnini kichraytirish */
+            padding: 2px 8px; /* Tugma o'lchamini moslashtirish */
           }
         }
       `}</style>
