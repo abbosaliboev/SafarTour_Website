@@ -21,7 +21,6 @@ function Header() {
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
-
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         if (navbarCollapse.classList.contains("show")) {
@@ -38,7 +37,7 @@ function Header() {
         <div
           className="container-fluid text-light py-2 px-4"
           style={{
-            background: "rgba(0,0,0,1)",
+            background: "rgba(0,0,0,0.45)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
             zIndex: 20,
@@ -48,7 +47,7 @@ function Header() {
             <div
               className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
               style={{
-                fontSize: "0.95rem",
+                fontSize: "0.85rem",
                 gap: "10px",
               }}
             >
@@ -58,7 +57,7 @@ function Header() {
               </small>
             </div>
 
-            {/* O‘ng tomon */}
+            {/* 🌍 Language Selector */}
             <div className="d-flex align-items-center position-relative">
               <a
                 className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
@@ -69,31 +68,25 @@ function Header() {
                 <i className="fab fa-telegram-plane fw-normal" />
               </a>
 
-              {/* 🌍 Language Selector */}
-              <div
-                className="dropdown"
-                style={{
-                  position: "relative",
-                  zIndex: 9999,
-                }}
-              >
+              {/* 🔹 FIXED dropdown */}
+              <div className="dropdown">
                 <button
                   className="btn btn-sm btn-outline-light dropdown-toggle"
                   id="languageDropdown"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  style={{
+                    position: "relative",
+                    zIndex: 99999, // bu faqat tugma uchun
+                  }}
                 >
                   {i18n.language === "uz" && "🇺🇿 O‘zbekcha"}
                   {i18n.language === "ru" && "🇷🇺 Русский"}
                   {i18n.language === "en" && "🇬🇧 English"}
                 </button>
                 <ul
-                  className="dropdown-menu dropdown-menu-end"
+                  className="dropdown-menu dropdown-menu-end show-on-top"
                   aria-labelledby="languageDropdown"
-                  style={{
-                    position: "absolute",
-                    zIndex: 99999,
-                  }}
                 >
                   <li>
                     <button
@@ -130,8 +123,8 @@ function Header() {
       <nav
         className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0"
         style={{
-          backgroundColor: "#0d0d0d", // ✅ mat qora fon
-          zIndex: 10,
+          backgroundColor: "#0d0d0d",
+          zIndex: 10, // pastroq qavatda bo‘lsin
         }}
       >
         <Link to="/" className="navbar-brand p-0">
@@ -141,7 +134,6 @@ function Header() {
           </h1>
         </Link>
 
-        {/* Mobil menyu tugmasi */}
         <button
           className="navbar-toggler border-0"
           type="button"
@@ -151,7 +143,6 @@ function Header() {
           <span className="fa fa-bars text-primary" />
         </button>
 
-        {/* Menyu */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto align-items-center py-2">
             <Link to="/" className="nav-item nav-link text-white">
@@ -179,8 +170,16 @@ function Header() {
         </div>
       </nav>
 
-      {/* 🔹 Responsiv CSS */}
+      {/* 🔹 CSS */}
       <style>{`
+        /* 🔸 Dropdownni doim ustga chiqarish */
+        .show-on-top {
+          position: fixed !important;
+          top: 60px !important;
+          right: 25px !important;
+          z-index: 999999 !important;
+        }
+
         @media (max-width: 768px) {
           .container-fluid small {
             font-size: 0.7rem !important;
@@ -192,11 +191,15 @@ function Header() {
             color: #fff !important;
           }
           .navbar-collapse {
-            background: #0d0d0d; /* ✅ mobil menyuda ham qora */
+            background: #0d0d0d;
             border-radius: 0 0 12px 12px;
           }
           .navbar-brand h1 {
             font-size: 1.3rem;
+          }
+          .show-on-top {
+            top: 50px !important;
+            right: 15px !important;
           }
         }
       `}</style>
