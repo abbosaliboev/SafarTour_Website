@@ -6,13 +6,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function Header() {
   const { t, i18n } = useTranslation();
 
-  // 🔹 Tilni o‘zgartirish
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
 
-  // 🔹 Navbar collapse-ni mobilda yopish
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
@@ -27,14 +25,17 @@ function Header() {
   }, []);
 
   return (
-    <header className="position-absolute top-0 w-100" style={{ zIndex: 1000 }}>
+    <header
+      className="position-fixed top-0 start-0 w-100"
+      style={{ zIndex: 2000 }}
+    >
       {/* 🔹 Topbar */}
       <div
         className="container-fluid text-light py-2 px-4"
         style={{
-          background: "rgba(0, 0, 0, 0.45)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
+          background: "rgba(0, 0, 0, 0.5)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
         }}
       >
         <div className="d-flex flex-wrap justify-content-between align-items-center">
@@ -42,7 +43,7 @@ function Header() {
           <div
             className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
             style={{
-              fontSize: "0.85rem",
+              fontSize: "0.8rem",
               lineHeight: "1.2",
               gap: "10px",
             }}
@@ -69,7 +70,13 @@ function Header() {
             </a>
 
             {/* 🌍 Language Selector */}
-            <div className="dropdown" style={{ position: "relative", zIndex: 2000 }}>
+            <div
+              className="dropdown"
+              style={{
+                position: "relative",
+                zIndex: 3000, // ✅ doim tepada
+              }}
+            >
               <button
                 className="btn btn-sm btn-outline-light dropdown-toggle"
                 id="languageDropdown"
@@ -81,11 +88,11 @@ function Header() {
                 {i18n.language === "en" && "🇬🇧 English"}
               </button>
               <ul
-                className="dropdown-menu dropdown-menu-end"
+                className="dropdown-menu dropdown-menu-end show-on-top"
                 aria-labelledby="languageDropdown"
                 style={{
-                  zIndex: 2500,
                   position: "absolute",
+                  zIndex: 4000, // ✅ boshqa hammasidan yuqori
                 }}
               >
                 <li>
@@ -128,7 +135,7 @@ function Header() {
         <Link to="/" className="navbar-brand p-0">
           <h1 className="text-primary m-0">
             <i className="fa fa-map-marker-alt me-3" />
-            {t("Jizzax Safar Tour")}
+            Jizzax Safar Tour
           </h1>
         </Link>
 
@@ -170,11 +177,10 @@ function Header() {
         </div>
       </nav>
 
-      {/* 🔹 Responsiv CSS */}
       <style>{`
         @media (max-width: 768px) {
           .container-fluid small {
-            font-size: 0.75rem !important;
+            font-size: 0.7rem !important;
           }
           .navbar-nav .nav-link {
             text-align: center;
@@ -183,11 +189,11 @@ function Header() {
             color: #fff !important;
           }
           .navbar-collapse {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             border-radius: 0 0 12px 12px;
           }
           .navbar-brand h1 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
           }
         }
       `}</style>

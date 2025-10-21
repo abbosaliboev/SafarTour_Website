@@ -12,11 +12,10 @@ export default function Home() {
 
   return (
     <div>
-      {/* 🔹 Hero Section Start */}
       <div
         className="container-fluid bg-primary py-5 mb-5 hero-header"
         style={{
-          paddingTop: "120px", // 👈 header uchun joy ochib berildi
+          paddingTop: "150px", // ✅ fixed header uchun joy ochildi
         }}
       >
         <div className="container py-5">
@@ -32,9 +31,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* 🔹 Hero Section End */}
 
-      {/* Other Sections */}
       <About />
       <Services />
       <Gallery />
@@ -42,11 +39,10 @@ export default function Home() {
       <Booking />
       <Process />
 
-      {/* 🔹 Responsiv CSS */}
       <style>{`
         @media (max-width: 768px) {
           .hero-header {
-            padding-top: 100px !important; /* mobilda biroz kichikroq */
+            padding-top: 120px !important;
           }
         }
       `}</style>
