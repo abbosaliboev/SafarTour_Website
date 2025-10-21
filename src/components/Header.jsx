@@ -13,7 +13,7 @@ function Header() {
   return (
     <div>
       {/* Topbar Start */}
-      <div className="container-fluid bg-dark px-5 d-none d-lg-block">
+      <div className="container-fluid bg-dark px-5">
         <div className="row gx-0">
           <div className="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
             <div
@@ -128,6 +128,30 @@ function Header() {
         </nav>
       </div>
       {/* Navbar & Hero End */}
+      {/* Mobile Responsive Styles */}
+      <style>{`
+        @media (max-width: 991px) {
+          .container-fluid.bg-dark {
+            padding: 10px 15px;
+          }
+          .d-inline-flex.align-items-center {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+          }
+          .col-lg-8, .col-lg-4 {
+            flex: 0 0 100%;
+            max-width: 100%;
+            text-align: center;
+          }
+          .dropdown-menu {
+            text-align: center;
+          }
+          .btn-sm-square {
+            margin: 0 5px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
