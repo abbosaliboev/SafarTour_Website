@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './i18n';
 
-// 🔹 Bootstrap CSS va JS importlari
+// ✅ Bootstrap faqat shu yerda yuklanadi (boshqa joyda emas)
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
