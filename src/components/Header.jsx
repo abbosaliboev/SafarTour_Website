@@ -6,28 +6,24 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function Header() {
   const { t, i18n } = useTranslation();
 
-  // 🔹 Tilni o‘zgartirish funksiyasi
+  // 🔹 Tilni o‘zgartirish
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
 
-  // 🔹 Mobil menyu yopilishi
+  // 🔹 Navbar collapse-ni mobilda yopish
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
-    const bsCollapse = window.bootstrap?.Collapse;
 
-    if (bsCollapse && navbarCollapse) {
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          const collapse = window.bootstrap.Collapse.getInstance(navbarCollapse);
-          if (collapse && navbarCollapse.classList.contains("show")) {
-            collapse.hide();
-          }
-        });
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (navbarCollapse.classList.contains("show")) {
+          new window.bootstrap.Collapse(navbarCollapse).hide();
+        }
       });
-    }
+    });
   }, []);
 
   return (
@@ -36,13 +32,13 @@ function Header() {
       <div
         className="container-fluid text-light py-2 px-4"
         style={{
-          background: "rgba(0, 0, 0, 0.4)",
+          background: "rgba(0, 0, 0, 0.45)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
         }}
       >
         <div className="d-flex flex-wrap justify-content-between align-items-center">
-          {/* Chap tomon (manzil, telefon, email) */}
+          {/* Chap tomon */}
           <div
             className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
             style={{
@@ -65,9 +61,8 @@ function Header() {
             </small>
           </div>
 
-          {/* O‘ng tomon (ijtimoiy tarmoq va til tanlash) */}
+          {/* O‘ng tomon */}
           <div className="d-flex align-items-center position-relative">
-            {/* Telegram */}
             <a
               className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
               href="https://t.me/Jizzax_SafarTour"
@@ -77,8 +72,8 @@ function Header() {
               <i className="fab fa-telegram-plane fw-normal" />
             </a>
 
-            {/* 🌍 Til tanlash */}
-            <div className="dropdown" style={{ zIndex: 1050 }}>
+            {/* 🌍 Language Selector */}
+            <div className="dropdown" style={{ position: "relative", zIndex: 2000 }}>
               <button
                 className="btn btn-sm btn-outline-light dropdown-toggle"
                 id="languageDropdown"
@@ -92,6 +87,10 @@ function Header() {
               <ul
                 className="dropdown-menu dropdown-menu-end"
                 aria-labelledby="languageDropdown"
+                style={{
+                  zIndex: 2500,
+                  position: "absolute",
+                }}
               >
                 <li>
                   <button
@@ -125,7 +124,7 @@ function Header() {
 
       {/* 🔹 Navbar */}
       <nav
-        className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0"
         style={{
           background: "transparent",
         }}
@@ -137,7 +136,7 @@ function Header() {
           </h1>
         </Link>
 
-        {/* Mobil menyu tugmasi */}
+        {/* Mobil tugma */}
         <button
           className="navbar-toggler border-0"
           type="button"
@@ -162,32 +161,6 @@ function Header() {
             <Link to="/Packages" className="nav-item nav-link text-white">
               {t("packages")}
             </Link>
-            <div className="nav-item dropdown">
-              <Link
-                to="#"
-                className="nav-link dropdown-toggle text-white"
-                data-bs-toggle="dropdown"
-              >
-                {t("pages")}
-              </Link>
-              <div className="dropdown-menu m-0">
-                <Link to="/Destination" className="dropdown-item">
-                  {t("destination")}
-                </Link>
-                <Link to="/Booking" className="dropdown-item">
-                  {t("booking")}
-                </Link>
-                <Link to="/Team" className="dropdown-item">
-                  {t("team")}
-                </Link>
-                <Link to="/Testimonial" className="dropdown-item">
-                  {t("testimonial")}
-                </Link>
-                <Link to="/Error" className="dropdown-item">
-                  {t("error")}
-                </Link>
-              </div>
-            </div>
             <Link to="/Contact" className="nav-item nav-link text-white">
               {t("contact")}
             </Link>
@@ -201,7 +174,7 @@ function Header() {
         </div>
       </nav>
 
-      {/* 🔹 Responsiv style */}
+      {/* 🔹 Responsiv CSS */}
       <style>{`
         @media (max-width: 768px) {
           .container-fluid small {
@@ -211,10 +184,11 @@ function Header() {
             text-align: center;
             padding: 12px 0;
             font-size: 16px;
-            color: white !important;
+            color: #fff !important;
           }
           .navbar-collapse {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 0 0 12px 12px;
           }
           .navbar-brand h1 {
             font-size: 1.4rem;
