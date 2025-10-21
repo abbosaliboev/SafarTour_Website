@@ -6,6 +6,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function Header() {
   const { t, i18n } = useTranslation();
 
+  // 🔹 Tilni o‘zgartirish
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
@@ -33,20 +34,33 @@ function Header() {
     <header
       className="position-absolute top-0 w-100"
       style={{
-        zIndex: 1000, // 🔝 eng yuqoriga chiqarish
-        background: "rgba(0, 0, 0, 0.3)", // 🔹 yarim shaffof fon (transparent)
-        backdropFilter: "blur(6px)", // 🔹 fonni biroz xiralashtirish (modern effekt)
+        zIndex: 1000,
       }}
     >
       {/* 🔹 Topbar */}
-      <div className="container-fluid text-light py-2 px-4">
+      <div
+        className="container-fluid text-light py-2 px-4"
+        style={{
+          background: "rgba(0, 0, 0, 0.4)", // yarim shaffof fon
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+        }}
+      >
         <div className="d-flex flex-wrap justify-content-between align-items-center">
-          <div className="d-flex align-items-center flex-wrap mb-2 mb-lg-0">
-            <small className="me-3">
+          {/* 🔹 Aloqa ma’lumotlari */}
+          <div
+            className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
+            style={{
+              fontSize: "0.85rem", // 🔹 matn biroz kichik
+              lineHeight: "1.2", // 🔹 qatorlar orasini zichroq qiladi
+              gap: "10px", // 🔹 phone/email orasidagi masofa
+            }}
+          >
+            <small className="me-3 m-0">
               <i className="fa fa-phone-alt me-2 text-primary" />
               {t("phone")}
             </small>
-            <small>
+            <small className="m-0">
               <i className="fa fa-envelope-open me-2 text-primary" />
               {t("email")}
             </small>
@@ -64,7 +78,7 @@ function Header() {
             </a>
 
             {/* 🌍 Language Selector */}
-            <div className="dropdown" style={{ zIndex: 1050 }}> {/* 🔹 yuqoriroq qatlam */}
+            <div className="dropdown" style={{ zIndex: 1050 }}>
               <button
                 className="btn btn-sm btn-outline-light dropdown-toggle"
                 id="languageDropdown"
@@ -77,7 +91,7 @@ function Header() {
                 className="dropdown-menu dropdown-menu-end show-on-top"
                 aria-labelledby="languageDropdown"
                 style={{
-                  zIndex: 2000, // 🔝 header ustida chiqishi uchun
+                  zIndex: 2000,
                   position: "absolute",
                 }}
               >
@@ -111,10 +125,12 @@ function Header() {
         </div>
       </div>
 
-      {/* 🔹 Navbar */}
+      {/* 🔹 Navbar (transparent) */}
       <nav
         className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
-        style={{ backgroundColor: "transparent" }} // 🔹 fon shaffof
+        style={{
+          background: "transparent", // 🔹 fon yo‘q
+        }}
       >
         <Link to="/" className="navbar-brand p-0">
           <h1 className="text-primary m-0">
@@ -129,8 +145,6 @@ function Header() {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarCollapse"
-          aria-expanded="false"
-          style={{ color: "#fff" }}
         >
           <span className="fa fa-bars text-primary" />
         </button>
@@ -170,17 +184,24 @@ function Header() {
           transform: translateY(0) !important;
         }
 
-        @media (max-width: 768px) {
-          header {
-            background: rgba(0, 0, 0, 0.6) !important;
+        @media (max-width: 991px) {
+          .navbar-collapse {
+            background: rgba(0, 0, 0, 0.7) !important; /* mobil menyu fon */
           }
+        }
+
+        @media (max-width: 768px) {
           .navbar-nav .nav-link {
             text-align: center;
             padding: 12px 0;
             font-size: 16px;
+            color: white !important; /* 🔹 textlarni oq rangda */
           }
           .navbar-brand h1 {
             font-size: 1.4rem;
+          }
+          .dropdown-menu {
+            min-width: 140px;
           }
         }
       `}</style>

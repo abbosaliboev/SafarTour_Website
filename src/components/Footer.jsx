@@ -84,7 +84,7 @@ export default function Footer() {
           <br />
           {t("footer.site_label")}{" "}
           <a
-            href="https://safar-tour.uz"
+            href="https://safartour.uz"
             className="text-primary text-decoration-none"
           >
             safar-tour.uz
