@@ -53,7 +53,7 @@ function Header() {
           <div className="d-flex flex-wrap justify-content-between align-items-center">
             {/* Chap tomon */}
             <div
-              className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
+              className="d-flex align-items-center flex-wrap mb-lg-0"
               style={{
                 fontSize: "0.85rem",
                 lineHeight: "1.2",
@@ -201,7 +201,7 @@ function Header() {
       <style>{`
         @media (max-width: 768px) {
           .container-fluid small {
-            font-size: 0.5rem !important;
+            font-size: 0.6rem !important;
           }
           .navbar-nav .nav-link {
             text-align: center;
