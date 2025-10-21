@@ -5,9 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './i18n';
 
-// ✅ Bootstrap faqat shu yerda yuklanadi (boshqa joyda emas)
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

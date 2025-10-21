@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Bootstrap JS yuklash
 
 function Gallery() {
   const { t } = useTranslation();
@@ -9,16 +9,19 @@ function Gallery() {
     process.env.PUBLIC_URL + `/assets/img/gallery${i + 1}.jpeg`
   );
 
-  // Bootstrap Carousel ni ishga tushirish
+  // ✅ Bootstrap carouselni faqat yuklangandan keyin ishga tushiramiz
   useEffect(() => {
-    const carouselElement = document.querySelector("#galleryCarousel");
-    if (carouselElement) {
-      const bsCarousel = new window.bootstrap.Carousel(carouselElement, {
-        interval: 5000, // har 3 soniyada almashadi
-        ride: "carousel",
-        pause: false, // hover qilganda to‘xtamasin
-        wrap: true, // oxiridan keyin boshiga qaytsin
-      });
+    if (window.bootstrap && window.bootstrap.Carousel) {
+      const carouselEl = document.getElementById("galleryCarousel");
+      if (carouselEl) {
+        const carousel = new window.bootstrap.Carousel(carouselEl, {
+          interval: 3500,
+          ride: "carousel",
+        });
+        return () => carousel.dispose();
+      }
+    } else {
+      console.warn("⚠️ Bootstrap JS hali yuklanmagan!");
     }
   }, []);
 
@@ -61,6 +64,7 @@ function Gallery() {
             ))}
           </div>
 
+          {/* Controls */}
           <button
             className="carousel-control-prev"
             type="button"
@@ -68,6 +72,7 @@ function Gallery() {
             data-bs-slide="prev"
           >
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
           </button>
           <button
             className="carousel-control-next"
@@ -76,6 +81,7 @@ function Gallery() {
             data-bs-slide="next"
           >
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
       </div>
