@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Gallery() {
   const { t } = useTranslation();
