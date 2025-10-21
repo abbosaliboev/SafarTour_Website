@@ -1,64 +1,78 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
   const { t, i18n } = useTranslation();
-  const [showTopbar, setShowTopbar] = useState(true);
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem("lang", lang);
+    localStorage.setItem('lang', lang);
   };
 
-  useEffect(() => {
-    const handleScroll = () => setShowTopbar(window.scrollY <= 80);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const navLinks = document.querySelectorAll(".nav-link");
-    const navbarCollapse = document.getElementById("navbarCollapse");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (navbarCollapse.classList.contains("show")) {
-          new window.bootstrap.Collapse(navbarCollapse).hide();
-        }
-      });
-    });
-  }, []);
-
   return (
-    <header className="w-100 position-relative">
-      {/* 🔹 Topbar */}
-      {showTopbar && (
-        <div
-          className="container-fluid text-light py-2 px-4"
-          style={{
-            background: "rgba(0,0,0,0.45)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            zIndex: 20,
-          }}
-        >
-          <div className="d-flex justify-content-between align-items-center flex-wrap">
+    <div>
+      {/* Topbar Start */}
+      <div className="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div className="row gx-0">
+          <div className="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
             <div
-              className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
-              style={{
-                fontSize: "0.85rem",
-                gap: "10px",
-              }}
+              className="d-inline-flex align-items-center"
+              style={{ height: 45 }}
             >
-              <small className="me-3">
-                <i className="fa fa-phone-alt me-2 text-primary" />
-                {t("phone")}
+              <small className="me-3 text-light">
+                <i className="fa fa-phone-alt me-2" />
+                {t('phone', { defaultValue: '+998 93 307 46 79' })}
               </small>
             </div>
-
-            {/* 🌍 Language Selector */}
-            <div className="d-flex align-items-center position-relative">
+          </div>
+          <div className="col-lg-4 text-center text-lg-end">
+            <div
+              className="d-inline-flex align-items-center"
+              style={{ height: 45 }}
+            >
+              {/* Language Selector */}
+              <div className="dropdown me-2">
+                <button
+                  className="btn btn-sm btn-outline-light dropdown-toggle"
+                  id="languageDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {i18n.language === 'uz' && '🇺🇿 O‘zbekcha'}
+                  {i18n.language === 'ru' && '🇷🇺 Русский'}
+                  {i18n.language === 'en' && '🇬🇧 English'}
+                </button>
+                <ul
+                  className="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="languageDropdown"
+                >
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => changeLanguage('uz')}
+                    >
+                      🇺🇿 O‘zbekcha
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => changeLanguage('ru')}
+                    >
+                      🇷🇺 Русский
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => changeLanguage('en')}
+                    >
+                      🇬🇧 English
+                    </button>
+                  </li>
+                </ul>
+              </div>
               <a
                 className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
                 href="https://t.me/Jizzax_SafarTour"
@@ -67,143 +81,84 @@ function Header() {
               >
                 <i className="fab fa-telegram-plane fw-normal" />
               </a>
-
-              {/* 🔹 FIXED dropdown */}
-              <div className="dropdown">
-                <button
-                  className="btn btn-sm btn-outline-light dropdown-toggle"
-                  id="languageDropdown"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style={{
-                    position: "relative",
-                    zIndex: 99999, // bu faqat tugma uchun
-                  }}
-                >
-                  {i18n.language === "uz" && "🇺🇿 O‘zbekcha"}
-                  {i18n.language === "ru" && "🇷🇺 Русский"}
-                  {i18n.language === "en" && "🇬🇧 English"}
-                </button>
-                <ul
-                  className="dropdown-menu dropdown-menu-end show-on-top"
-                  aria-labelledby="languageDropdown"
-                >
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => changeLanguage("uz")}
-                    >
-                      🇺🇿 O‘zbekcha
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => changeLanguage("ru")}
-                    >
-                      🇷🇺 Русский
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => changeLanguage("en")}
-                    >
-                      🇬🇧 English
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <a
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                href=""
+              >
+                <i className="fab fa-twitter fw-normal" />
+              </a>
+              <a
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                href=""
+              >
+                <i className="fab fa-facebook-f fw-normal" />
+              </a>
+              <a
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                href=""
+              >
+                <i className="fab fa-linkedin-in fw-normal" />
+              </a>
+              <a
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                href=""
+              >
+                <i className="fab fa-instagram fw-normal" />
+              </a>
+              <a
+                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle"
+                href=""
+              >
+                <i className="fab fa-youtube fw-normal" />
+              </a>
             </div>
           </div>
         </div>
-      )}
-
-      {/* 🔹 Navbar */}
-      <nav
-        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0"
-        style={{
-          backgroundColor: "#0d0d0d",
-          zIndex: 10, // pastroq qavatda bo‘lsin
-        }}
-      >
-        <Link to="/" className="navbar-brand p-0">
-          <h1 className="text-primary m-0">
-            <i className="fa fa-map-marker-alt me-3" />
-            Jizzax Safar Tour
-          </h1>
-        </Link>
-
-        <button
-          className="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse"
-        >
-          <span className="fa fa-bars text-primary" />
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarCollapse">
-          <div className="navbar-nav ms-auto align-items-center py-2">
-            <Link to="/" className="nav-item nav-link text-white">
-              {t("home")}
-            </Link>
-            <Link to="/About" className="nav-item nav-link text-white">
-              {t("about")}
-            </Link>
-            <Link to="/Services" className="nav-item nav-link text-white">
-              {t("services")}
-            </Link>
-            <Link to="/Packages" className="nav-item nav-link text-white">
-              {t("packages")}
-            </Link>
-            <Link to="/Contact" className="nav-item nav-link text-white">
-              {t("contact")}
-            </Link>
-            <Link
-              to="/Booking"
-              className="btn btn-primary rounded-pill py-2 px-4 ms-lg-3"
-            >
-              {t("booking")}
+      </div>
+      {/* Topbar End */}
+      {/* Navbar & Hero Start */}
+      <div className="container-fluid position-relative p-0">
+        <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+          <Link to="/" className="navbar-brand p-0">
+            <h1 className="text-primary m-0">
+              <i className="fa fa-map-marker-alt me-3" />
+              {t('brand', { defaultValue: 'Jizzax Safar Tour' })}
+            </h1>
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span className="fa fa-bars" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarCollapse">
+            <div className="navbar-nav ms-auto py-0">
+              <Link to="/" className="nav-item nav-link">
+                {t('home', { defaultValue: 'Home' })}
+              </Link>
+              <Link to="/About" className="nav-item nav-link">
+                {t('about', { defaultValue: 'About' })}
+              </Link>
+              <Link to="/Services" className="nav-item nav-link">
+                {t('services', { defaultValue: 'Services' })}
+              </Link>
+              <Link to="/Packages" className="nav-item nav-link">
+                {t('packages', { defaultValue: 'Packages' })}
+              </Link>
+              <Link to="/Contact" className="nav-item nav-link">
+                {t('contact', { defaultValue: 'Contact' })}
+              </Link>
+            </div>
+            <Link to="/" className="btn btn-primary rounded-pill py-2 px-4">
+              {t('booking', { defaultValue: 'Booking' })}
             </Link>
           </div>
-        </div>
-      </nav>
-
-      {/* 🔹 CSS */}
-      <style>{`
-        /* 🔸 Dropdownni doim ustga chiqarish */
-        .show-on-top {
-          position: fixed !important;
-          top: 60px !important;
-          right: 25px !important;
-          z-index: 999999 !important;
-        }
-
-        @media (max-width: 768px) {
-          .container-fluid small {
-            font-size: 0.7rem !important;
-          }
-          .navbar-nav .nav-link {
-            text-align: center;
-            padding: 12px 0;
-            font-size: 16px;
-            color: #fff !important;
-          }
-          .navbar-collapse {
-            background: #0d0d0d;
-            border-radius: 0 0 12px 12px;
-          }
-          .navbar-brand h1 {
-            font-size: 1.3rem;
-          }
-          .show-on-top {
-            top: 50px !important;
-            right: 15px !important;
-          }
-        }
-      `}</style>
-    </header>
+        </nav>
+      </div>
+      {/* Navbar & Hero End */}
+    </div>
   );
 }
 
