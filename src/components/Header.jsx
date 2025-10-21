@@ -81,36 +81,6 @@ function Header() {
               >
                 <i className="fab fa-telegram-plane fw-normal" />
               </a>
-              <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
-                href=""
-              >
-                <i className="fab fa-twitter fw-normal" />
-              </a>
-              <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
-                href=""
-              >
-                <i className="fab fa-facebook-f fw-normal" />
-              </a>
-              <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
-                href=""
-              >
-                <i className="fab fa-linkedin-in fw-normal" />
-              </a>
-              <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
-                href=""
-              >
-                <i className="fab fa-instagram fw-normal" />
-              </a>
-              <a
-                className="btn btn-sm btn-outline-light btn-sm-square rounded-circle"
-                href=""
-              >
-                <i className="fab fa-youtube fw-normal" />
-              </a>
             </div>
           </div>
         </div>
