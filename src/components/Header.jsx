@@ -6,13 +6,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function Header() {
   const { t, i18n } = useTranslation();
 
-  // 🔹 Tilni o‘zgartirish
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
 
-  // 🔹 Navbar collapse ni avtomatik yopish (mobilda)
+  // 🔹 Mobil nav yopilishi
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
@@ -31,16 +30,18 @@ function Header() {
   }, []);
 
   return (
-    <header>
+    <header
+      className="position-absolute top-0 w-100"
+      style={{
+        zIndex: 1000, // 🔝 eng yuqoriga chiqarish
+        background: "rgba(0, 0, 0, 0.3)", // 🔹 yarim shaffof fon (transparent)
+        backdropFilter: "blur(6px)", // 🔹 fonni biroz xiralashtirish (modern effekt)
+      }}
+    >
       {/* 🔹 Topbar */}
-      <div className="container-fluid bg-dark text-light py-2 px-4">
+      <div className="container-fluid text-light py-2 px-4">
         <div className="d-flex flex-wrap justify-content-between align-items-center">
-          {/* Chap tomonda aloqa ma’lumotlari */}
           <div className="d-flex align-items-center flex-wrap mb-2 mb-lg-0">
-            <small className="me-3">
-              <i className="fa fa-plane-departure me-2 text-primary" />
-              {t("location")}
-            </small>
             <small className="me-3">
               <i className="fa fa-phone-alt me-2 text-primary" />
               {t("phone")}
@@ -51,8 +52,8 @@ function Header() {
             </small>
           </div>
 
-          {/* O‘ng tomonda Telegram + Language */}
-          <div className="d-flex align-items-center">
+          {/* 🔹 Telegram + Language */}
+          <div className="d-flex align-items-center position-relative">
             <a
               className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
               href="https://t.me/Jizzax_SafarTour"
@@ -63,7 +64,7 @@ function Header() {
             </a>
 
             {/* 🌍 Language Selector */}
-            <div className="dropdown">
+            <div className="dropdown" style={{ zIndex: 1050 }}> {/* 🔹 yuqoriroq qatlam */}
               <button
                 className="btn btn-sm btn-outline-light dropdown-toggle"
                 id="languageDropdown"
@@ -73,8 +74,12 @@ function Header() {
                 {i18n.language.toUpperCase()}
               </button>
               <ul
-                className="dropdown-menu dropdown-menu-end"
+                className="dropdown-menu dropdown-menu-end show-on-top"
                 aria-labelledby="languageDropdown"
+                style={{
+                  zIndex: 2000, // 🔝 header ustida chiqishi uchun
+                  position: "absolute",
+                }}
               >
                 <li>
                   <button
@@ -107,20 +112,25 @@ function Header() {
       </div>
 
       {/* 🔹 Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-light shadow-sm sticky-top px-4 px-lg-5 py-3">
+      <nav
+        className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+        style={{ backgroundColor: "transparent" }} // 🔹 fon shaffof
+      >
         <Link to="/" className="navbar-brand p-0">
-          <h1 className="text-primary fw-bold m-0 fs-3">
-            <i className="fa fa-globe-americas me-2" />
+          <h1 className="text-primary m-0">
+            <i className="fa fa-map-marker-alt me-3" />
             Jizzax Safar Tour
           </h1>
         </Link>
 
-        {/* Mobil tugma */}
+        {/* Mobil menyu tugmasi */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarCollapse"
+          aria-expanded="false"
+          style={{ color: "#fff" }}
         >
           <span className="fa fa-bars text-primary" />
         </button>
@@ -128,19 +138,19 @@ function Header() {
         {/* Menyu */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto align-items-center py-2">
-            <Link to="/" className="nav-item nav-link">
+            <Link to="/" className="nav-item nav-link text-white">
               {t("home")}
             </Link>
-            <Link to="/About" className="nav-item nav-link">
+            <Link to="/About" className="nav-item nav-link text-white">
               {t("about")}
             </Link>
-            <Link to="/Services" className="nav-item nav-link">
+            <Link to="/Services" className="nav-item nav-link text-white">
               {t("services")}
             </Link>
-            <Link to="/Packages" className="nav-item nav-link">
+            <Link to="/Packages" className="nav-item nav-link text-white">
               {t("packages")}
             </Link>
-            <Link to="/Contact" className="nav-item nav-link">
+            <Link to="/Contact" className="nav-item nav-link text-white">
               {t("contact")}
             </Link>
             <Link
@@ -155,7 +165,15 @@ function Header() {
 
       {/* 🔹 Responsivlik */}
       <style>{`
+        .dropdown-menu.show-on-top {
+          top: 100% !important;
+          transform: translateY(0) !important;
+        }
+
         @media (max-width: 768px) {
+          header {
+            background: rgba(0, 0, 0, 0.6) !important;
+          }
           .navbar-nav .nav-link {
             text-align: center;
             padding: 12px 0;
@@ -163,9 +181,6 @@ function Header() {
           }
           .navbar-brand h1 {
             font-size: 1.4rem;
-          }
-          .dropdown-menu {
-            min-width: 140px;
           }
         }
       `}</style>
