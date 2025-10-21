@@ -21,6 +21,7 @@ function Header() {
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
+
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         if (navbarCollapse.classList.contains("show")) {
@@ -43,10 +44,13 @@ function Header() {
             zIndex: 20,
           }}
         >
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center flex-wrap">
             <div
-              className="d-flex align-items-center"
-              style={{ fontSize: "0.75rem", gap: "10px" }}
+              className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
+              style={{
+                fontSize: "0.95rem",
+                gap: "10px",
+              }}
             >
               <small className="me-3">
                 <i className="fa fa-phone-alt me-2 text-primary" />
@@ -54,6 +58,7 @@ function Header() {
               </small>
             </div>
 
+            {/* O‘ng tomon */}
             <div className="d-flex align-items-center position-relative">
               <a
                 className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
@@ -64,9 +69,13 @@ function Header() {
                 <i className="fab fa-telegram-plane fw-normal" />
               </a>
 
+              {/* 🌍 Language Selector */}
               <div
                 className="dropdown"
-                style={{ position: "relative", zIndex: 9999 }}
+                style={{
+                  position: "relative",
+                  zIndex: 9999,
+                }}
               >
                 <button
                   className="btn btn-sm btn-outline-light dropdown-toggle"
@@ -81,7 +90,10 @@ function Header() {
                 <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="languageDropdown"
-                  style={{ zIndex: 99999 }}
+                  style={{
+                    position: "absolute",
+                    zIndex: 99999,
+                  }}
                 >
                   <li>
                     <button
@@ -116,9 +128,9 @@ function Header() {
 
       {/* 🔹 Navbar */}
       <nav
-        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0 custom-navbar"
+        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0"
         style={{
-          background: "transparent",
+          backgroundColor: "#0d0d0d", // ✅ mat qora fon
           zIndex: 10,
         }}
       >
@@ -129,6 +141,7 @@ function Header() {
           </h1>
         </Link>
 
+        {/* Mobil menyu tugmasi */}
         <button
           className="navbar-toggler border-0"
           type="button"
@@ -138,6 +151,7 @@ function Header() {
           <span className="fa fa-bars text-primary" />
         </button>
 
+        {/* Menyu */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto align-items-center py-2">
             <Link to="/" className="nav-item nav-link text-white">
@@ -165,27 +179,8 @@ function Header() {
         </div>
       </nav>
 
-      {/* ✅ CSS override */}
+      {/* 🔹 Responsiv CSS */}
       <style>{`
-        /* Navbar transparent override */
-        .navbar,
-        .custom-navbar,
-        .navbar-dark {
-          background-color: transparent !important;
-          box-shadow: none !important;
-          border: none !important;
-        }
-
-        .navbar::before {
-          background: transparent !important;
-        }
-
-        /* Bootstrap default bg-light fix */
-        .bg-light,
-        .navbar-light {
-          background-color: transparent !important;
-        }
-
         @media (max-width: 768px) {
           .container-fluid small {
             font-size: 0.7rem !important;
@@ -197,7 +192,7 @@ function Header() {
             color: #fff !important;
           }
           .navbar-collapse {
-            background: rgba(0, 0, 0, 0.9);
+            background: #0d0d0d; /* ✅ mobil menyuda ham qora */
             border-radius: 0 0 12px 12px;
           }
           .navbar-brand h1 {

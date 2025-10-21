@@ -87,7 +87,7 @@ export default function Footer() {
             href="https://safartour.uz"
             className="text-primary text-decoration-none"
           >
-            safar-tour.uz
+            safartour.uz
           </a>{" "}
           | {t("footer.dev_by")}{" "}
           <a
