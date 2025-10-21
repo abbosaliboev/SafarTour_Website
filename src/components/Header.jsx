@@ -38,7 +38,7 @@ function Header() {
         <div
           className="container-fluid text-light py-2 px-4"
           style={{
-            background: "rgba(0,0,0,0.45)",
+            background: "rgba(0,0,0,1)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
             zIndex: 20,
