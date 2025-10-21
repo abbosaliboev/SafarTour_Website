@@ -7,26 +7,20 @@ function Header() {
   const { t, i18n } = useTranslation();
   const [showTopbar, setShowTopbar] = useState(true);
 
-  // 🔹 Tilni o‘zgartirish
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("lang", lang);
   };
 
-  // 🔹 Scroll event: topbarni yashirish
   useEffect(() => {
-    const handleScroll = () => {
-      setShowTopbar(window.scrollY <= 80);
-    };
+    const handleScroll = () => setShowTopbar(window.scrollY <= 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔹 Navbar collapse-ni mobilda yopish
   useEffect(() => {
     const navLinks = document.querySelectorAll(".nav-link");
     const navbarCollapse = document.getElementById("navbarCollapse");
-
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         if (navbarCollapse.classList.contains("show")) {
@@ -38,39 +32,28 @@ function Header() {
 
   return (
     <header className="w-100 position-relative">
-      {/* 🔹 Topbar — faqat yuqorida ko‘rinadi */}
+      {/* 🔹 Topbar */}
       {showTopbar && (
         <div
-          className="container-fluid text-light py-2 px-4 position-relative"
+          className="container-fluid text-light py-2 px-4"
           style={{
-            background: "rgba(0, 0, 0, 0.45)",
+            background: "rgba(0,0,0,0.45)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
-            transition: "all 0.3s ease-in-out",
             zIndex: 20,
           }}
         >
-          <div className="d-flex flex-wrap justify-content-between align-items-center">
-            {/* Chap tomon */}
+          <div className="d-flex justify-content-between align-items-center">
             <div
-              className="d-flex align-items-center flex-wrap mb-2 mb-lg-0"
-              style={{
-                fontSize: "0.85rem",
-                lineHeight: "1.2",
-                gap: "10px",
-              }}
+              className="d-flex align-items-center"
+              style={{ fontSize: "0.75rem", gap: "10px" }}
             >
-              <small className="me-2 m-0">
-                <i className="fa fa-map-marker-alt me-2 text-primary" />
-                {t("location")}
-              </small>
-              <small className="me-2 m-0">
+              <small className="me-3">
                 <i className="fa fa-phone-alt me-2 text-primary" />
                 {t("phone")}
               </small>
             </div>
 
-            {/* O‘ng tomon */}
             <div className="d-flex align-items-center position-relative">
               <a
                 className="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
@@ -81,13 +64,9 @@ function Header() {
                 <i className="fab fa-telegram-plane fw-normal" />
               </a>
 
-              {/* 🌍 Language Selector */}
               <div
                 className="dropdown"
-                style={{
-                  position: "relative",
-                  zIndex: 9999,
-                }}
+                style={{ position: "relative", zIndex: 9999 }}
               >
                 <button
                   className="btn btn-sm btn-outline-light dropdown-toggle"
@@ -102,10 +81,7 @@ function Header() {
                 <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="languageDropdown"
-                  style={{
-                    position: "absolute",
-                    zIndex: 99999,
-                  }}
+                  style={{ zIndex: 99999 }}
                 >
                   <li>
                     <button
@@ -140,22 +116,19 @@ function Header() {
 
       {/* 🔹 Navbar */}
       <nav
-        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0 position-relative custom-navbar"
+        className="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3 py-lg-0 custom-navbar"
+        style={{
+          background: "transparent",
+          zIndex: 10,
+        }}
       >
         <Link to="/" className="navbar-brand p-0">
-          <h1
-            className="text-primary m-0"
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
+          <h1 className="text-primary m-0">
             <i className="fa fa-map-marker-alt me-3" />
             Jizzax Safar Tour
           </h1>
         </Link>
 
-        {/* Mobil menyu tugmasi */}
         <button
           className="navbar-toggler border-0"
           type="button"
@@ -165,7 +138,6 @@ function Header() {
           <span className="fa fa-bars text-primary" />
         </button>
 
-        {/* Menyu */}
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto align-items-center py-2">
             <Link to="/" className="nav-item nav-link text-white">
@@ -193,16 +165,25 @@ function Header() {
         </div>
       </nav>
 
-      {/* 🔹 CSS override */}
+      {/* ✅ CSS override */}
       <style>{`
-        .custom-navbar {
-          background-color: transparent !important; /* ✅ oq fonni butunlay o‘chiradi */
+        /* Navbar transparent override */
+        .navbar,
+        .custom-navbar,
+        .navbar-dark {
+          background-color: transparent !important;
           box-shadow: none !important;
           border: none !important;
         }
 
-        .navbar-light, .bg-light {
-          background-color: transparent !important; /* ✅ bootstrap oq fonini bekor qiladi */
+        .navbar::before {
+          background: transparent !important;
+        }
+
+        /* Bootstrap default bg-light fix */
+        .bg-light,
+        .navbar-light {
+          background-color: transparent !important;
         }
 
         @media (max-width: 768px) {
